@@ -2,12 +2,13 @@
 ## Introductory Project: Diagonal Sudoku Solver
 
 # Question 1 (Naked Twins)
-Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+Q: How do we use constraint propagation to solve the naked twins problem?
+A: Naked twins strategy is the idea that if two boxes within the same unit has same two possible choices, then those two choices must belong to those two boxes---thus other boxes in the unit cannot be one of those two choices.  This should be used together with other two constraint strategies, "eliminate" and "only choice", then it can be repeated until no more improvements are made.
+In terms of implementing it, there are two distinct tasks involved here: finding the naked twins and removing the two possible digits from other boxes in the unit (or units, since the naked twins can technically belong to more than one unit).  Naked twins can be found by looping through each unit, look at all the boxes with two choices, and see if any of them have the same choices.  Once naked twins are found, we can loop through each pair, and take the two possible digits and remove them from all of the pair's shared peers (or the intersection of the sets of each naked twin's peers), which is equivalent to all the boxes that belong to all the units that both naked twins belong to (except the pair itself).
 
 # Question 2 (Diagonal Sudoku)
-Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+Q: How do we use constraint propagation to solve the diagonal sudoku problem?
+A: The implementation of diagonal sudoku constraint is very simple!  The constraints now have to apply to the diagonals as they do to other units.  Therefore, only change it needs from a normal sudoku solve is to include the diagonal units into the "unitlist".  Whenever a function calls loops through the units in unitlist, it'll loop through the diagonal units and apply the same constraints.
 
 ### Install
 
@@ -31,7 +32,7 @@ If not, please see how to download pygame [here](http://www.pygame.org/download.
 
 ### Visualizing
 
-To visualize your solution, please only assign values to the values_dict using the ```assign_values``` function provided in solution.py
+To visualize your solution, please only assign values to the values_dict using the ```assign_values``` function provided in function.py
 
 ### Data
 
